@@ -6,16 +6,16 @@ void naive_sort(int const N, int an_array[])
 {
     
     for (auto i = 0; i < N; ++i) {
-      
-        auto the_smallest = an_array[i];
-        auto index = i;
+     
+	auto the_smallest = an_array[i];
+	auto index = i;
 
         for (auto j = i; j < N; ++j) {
             
 		if (an_array[j] < the_smallest) {
 		the_smallest = an_array[j];
 		index = j;
-            }
+        }
         }
 
         an_array[index] = an_array[i];
@@ -26,32 +26,32 @@ void naive_sort(int const N, int an_array[])
 
 void random_initialisation(int const N, int an_array[])
 {
-    std::random_device rd;
-    std::uniform_int_distribution<int> generator(0, 100);
-    for (auto i = 0; i < N; ++i) {
+    	std::random_device rd;
+    	std::uniform_int_distribution<int> generator(0, 100);
+    	for (auto i = 0; i < N; ++i) {
         an_array[i] = generator(rd);
-    }
+    	}
 }
 
 int main()
 {
     
-    auto const N = 10;
-
+    	auto const N = 10;
+	
     
-    int an_array[N];
+    	int an_array[N];
 
     {
-        std::random_device rd;
+	std::random_device rd;
         std::uniform_int_distribution<int> generator(0, 100);
         for (auto i = 0; i < N; ++i) {
             an_array[i] = generator(rd);
         }
-    }
+    	}
 	naive_sort(N, an_array);
 
-    std::cout << "sizeof(an_array): " << sizeof(an_array) << "\n";
-    for (auto i = 0; i < N; ++i) {
+    	std::cout << "sizeof(an_array): " << sizeof(an_array) << "\n";
+    	for (auto i = 0; i < N; ++i) {
         std::cout << an_array[i] << "\n";
     }
 
