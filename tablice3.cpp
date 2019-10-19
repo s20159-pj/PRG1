@@ -1,30 +1,31 @@
 
 #include <iostream>
 #include <random>
+#include <string>
 
 void naive_sort(int const N, int an_array[])
 {
     
     for (auto i = 0; i < N; ++i) {
-     
-	auto the_smallest = an_array[i];
-	auto index = i;
+	int* the_smallest = &an_array[i];
 
         for (auto j = i; j < N; ++j) {
             
-		if (an_array[j] < the_smallest) {
-		the_smallest = an_array[j];
-		index = j;
+		if (an_array[j] < *the_smallest) {
+		the_smallest = &an_array[j];
+		
         }
         }
+	auto tmp = *the_smallest;
 
-        an_array[index] = an_array[i];
-
-        an_array[i] = the_smallest;
+	*the_smallest = an_array[i];
+	an_array[i] = tmp;
+ 
+      
     }
 }
 
-void random_initialisation(int const N, int an_array[])
+void random_initialisation(int const N, int an_array)
 {
     	std::random_device rd;
     	std::uniform_int_distribution<int> generator(0, 100);
@@ -33,7 +34,7 @@ void random_initialisation(int const N, int an_array[])
     	}
 }
 
-int main()
+int main(int argc, char* argv[])
 {
     
     	auto const N = 10;
@@ -54,7 +55,7 @@ int main()
     	for (auto i = 0; i < N; ++i) {
         std::cout << an_array[i] << "\n";
     }
-
-    return 0;
+	delete[] an_array;
+	return 0;
 }
      
